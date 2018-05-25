@@ -1,14 +1,12 @@
 
 <template>
-  <div id="app">
-    <div>
-      <!-- <img src="./assets/images/Dionysus.svg"/> -->
-    </div>
-    <router-view/>
+  <div>
+    <router-view />
   </div>
 </template>
 
 <script>
+
 export default {
   name: "App",
   components: {
@@ -25,5 +23,4 @@ export default {
   color: #2c3e50;
   /* margin-top: 60px; */
 }
-
 </style>

@@ -6,7 +6,11 @@
             </el-col>
             <el-col :span="16">
                 <div class="grid-content bg-purple-light">
+                    <HeaderNav></HeaderNav>
 
+                    <el-main class="main">Main</el-main>
+
+                    <el-footer class="footer">Footer</el-footer>
                 </div>
             </el-col>
             <el-col :span="4">
@@ -17,14 +21,17 @@
 </template>
 
 <script>
+import HeaderNav from './HeaderNav';
+
 export default {
   name: "Layout",
-  components: {}
+  components: {
+    HeaderNav
+  }
 };
 </script>
 
 <style>
-
 .el-row {
   margin-bottom: 0px;
   /* &:last-child {
@@ -47,8 +54,16 @@ export default {
   border-radius: 4px;
   min-height: 36px;
 }
+.main {
+  height: 1000px;
+  background-color: #d3dce6;
+}
 
-
+.footer {
+  height: 60px;
+  width: 100%;
+  background-color: #cccccc;
+}
 </style>
 
 
