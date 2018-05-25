@@ -26,6 +26,8 @@ export default {
   widows: 30px;
   padding-left: 20px;
 }
+
+
 </style>
 
 
