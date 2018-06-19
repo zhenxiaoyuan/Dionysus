@@ -37,11 +37,11 @@ export default {
 
  div.mddisplay {
    display: inline-block;
-   width: 49%;
+   width: 100%;
    height: 100%;
    vertical-align: top;
    box-sizing: border-box;
    padding: 0 20px;
-   overflow:scroll
+   /* overflow:scroll */
  }
 </style>

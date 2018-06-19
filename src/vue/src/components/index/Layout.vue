@@ -5,10 +5,14 @@
                 <div class="grid-content"></div>
             </el-col>
             <el-col :span="16">
-                <div class="grid-content bg-purple-light">
-                    <HeaderNav></HeaderNav>
+                <div class="grid-content">
+                    <el-header>
+                        <HeaderNav></HeaderNav>
+                    </el-header>
 
-                    <el-main class="main">Main</el-main>
+                    <el-main class="main">
+                        <ArticleBrief></ArticleBrief>
+                    </el-main>
 
                     <el-footer class="footer">Footer</el-footer>
                 </div>
@@ -21,12 +25,14 @@
 </template>
 
 <script>
-import HeaderNav from './HeaderNav';
+import HeaderNav from "./HeaderNav";
+import ArticleBrief from "./ArticleBrief";
 
 export default {
   name: "Layout",
   components: {
-    HeaderNav
+    HeaderNav,
+    ArticleBrief
   }
 };
 </script>
@@ -63,6 +69,10 @@ export default {
   height: 60px;
   width: 100%;
   background-color: #cccccc;
+}
+
+.el-header {
+    background-color: white;
 }
 </style>
 
