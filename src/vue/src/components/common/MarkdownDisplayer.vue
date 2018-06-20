@@ -41,7 +41,7 @@ export default {
    height: 100%;
    vertical-align: top;
    box-sizing: border-box;
-   padding: 0 20px;
+   /* padding: 0 20px; */
    /* overflow:scroll */
  }
 </style>

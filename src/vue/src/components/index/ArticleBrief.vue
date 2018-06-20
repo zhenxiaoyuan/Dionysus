@@ -1,41 +1,36 @@
 <template>
-    <div>
-        <MarkdownDisplayer v-bind:input="ssss"></MarkdownDisplayer>
-        <ul>
-            <li 
-                v-for="article in articles"
-                v-bind:key="article.id"
-                v-bind:input="article.input"
-                style="list-style: none"
-            >
-        <MarkdownDisplayer v-bind:input="article.input"></MarkdownDisplayer>
-            </li>
-        </ul>
+    <div class="article-brief">
+        <div class="brief-header">{{title}}</div>
+        <div class="brief-main">
+            <MarkdownDisplayer v-bind:input="content"></MarkdownDisplayer>
+        </div>
+        <div class="brief-footer">
+            这里是页脚，写点时间啊、分类啊啥的
+        </div>
     </div>
 </template>
 
 <script>
-import MarkdownDisplayer from "../common/MarkdownDisplayer"
+import MarkdownDisplayer from "../common/MarkdownDisplayer";
 
 export default {
-    name: "ArticleBrief", 
-    data(){
-        return{
-            ssss:'## kk\n_jjjj_',
-            articles: [
-                {
-                    id: 1,
-                    input: "# hello"
-                },
-                {
-                    id: 4,
-                    input: "_bye_"
-                }
-            ]
-        }
-    },
-    components: {
-        MarkdownDisplayer
-    }
+  name: "ArticleBrief",
+  props: ["article"],
+  data: function() {
+    return {
+      title: this.article.title,
+      content: this.article.content
+    };
+  },
+  components: {
+    MarkdownDisplayer
+  }
 };
 </script>
+
+<style>
+.brief-header {
+    font-size: 32px;
+}
+</style>
+
