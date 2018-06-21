@@ -1,6 +1,10 @@
 <template>
     <div class="header-nav">
-        <el-row type="flex" justify="space-between" align="middle">
+        <el-row type="flex" justify="center" align="middle" style="height: 100px">
+            <img src="../../assets/images/Dionysus.svg" class="logo-image" />
+            <h2 class="logo-name">Dionysus</h2>
+        </el-row>
+        <!-- <el-row type="flex" justify="space-between" align="middle">
             <el-col :span="4" :push="1">
                 <el-row type="flex" align="middle">
                     <img src="../../assets/images/Dionysus.svg" class="logo-image" />
@@ -31,7 +35,7 @@
 
             </el-col>
 
-        </el-row>
+        </el-row> -->
     </div>
 </template>
 
@@ -46,11 +50,12 @@ export default {
   /* height: 30px;
   widows: 30px;
   padding-left: 20px; */
-  padding-left: 10px;
+  padding-left: 20px;
+  font-size: 50px;
 }
 .logo-image {
-  height: 30px;
-  widows: 30px;
+  height: 60px;
+  widows: 60px;
   /* padding-left: 20px; */
 }
 .bg-purple {
@@ -60,7 +65,7 @@ export default {
   background: #e5e9f2;
 }
 .header-nav {
-    /* border-bottom: 2px solid gray; */
+  /* border-bottom: 2px solid gray; */
 }
 </style>
 

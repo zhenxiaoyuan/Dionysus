@@ -1,6 +1,8 @@
 <template>
     <div class="article-brief">
-        <div class="brief-header">{{title}}</div>
+        <div class="brief-header">
+            <el-button type="text">{{title}}</el-button>
+        </div>
         <div class="brief-main">
             <MarkdownDisplayer v-bind:input="content"></MarkdownDisplayer>
         </div>
@@ -31,6 +33,12 @@ export default {
 <style>
 .brief-header {
     font-size: 32px;
+}
+.article-brief {
+    border: 1px solid #cccccc;
+    border-radius: 12px;
+    margin: 0px 30px 30px 30px;
+    padding: 20px;
 }
 </style>
 

@@ -1,28 +1,36 @@
 <template>
-    <div>
-        <el-row>
-            <el-col :span="2">
-                <div class="grid-content"></div>
-            </el-col>
-            <el-col :span="20">
-                <el-container>
-                    <el-header height=" ">
-                        <HeaderNav></HeaderNav>
-                    </el-header>
+  <div>
+    <el-row>
+      <el-col :span="2">
+        <div class="grid-content"></div>
+      </el-col>
+      <el-col :span="20">
+        <el-container>
+          <el-header height=" ">
+            <HeaderNav></HeaderNav>
+          </el-header>
 
-                    <el-main class="main">
-                        <ArticleCatalog></ArticleCatalog>
-                    </el-main>
+          <el-main class="main">
+            <el-row>
+              <el-col :span="18">
+                <ArticleCatalog></ArticleCatalog>
+              </el-col>
+              <el-col :span="6" style="backgroundColor: #cccccc; height: 1000px">
+                Loading
+              </el-col>
+            </el-row>
 
-                    <el-footer class="footer">Footer</el-footer>
-                </el-container>
+          </el-main>
 
-            </el-col>
-            <el-col :span="2">
-                <div class="grid-content"></div>
-            </el-col>
-        </el-row>
-    </div>
+          <el-footer class="footer">Footer</el-footer>
+        </el-container>
+
+      </el-col>
+      <el-col :span="2">
+        <div class="grid-content"></div>
+      </el-col>
+    </el-row>
+  </div>
 </template>
 
 <script>
@@ -74,7 +82,7 @@ export default {
 
 .el-header {
   background-color: white;
-  border-bottom: 2px solid #cccccc;
+  /* border-bottom: 2px solid #cccccc; */
 }
 </style>
 
