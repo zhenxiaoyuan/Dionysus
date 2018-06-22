@@ -1,3 +1,5 @@
+// 引入 Element 组件库所需组件
+
 import Vue from 'vue';
 import {
     Pagination,

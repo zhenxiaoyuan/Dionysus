@@ -1,22 +1,17 @@
-import Vue from 'vue'
-import Router from 'vue-router'
-import About from '@/pages/About'
-import Index from '@/pages/Index'
-import Detail from '@/pages/Detail'
-import Terminal from '@/pages/Terminal'
+import Vue from 'vue';
+import Router from 'vue-router';
+import About from '@/pages/About';
+import Index from '@/pages/Index';
+import Detail from '@/pages/Detail';
+import Terminal from '@/pages/Terminal';
 
-Vue.use(Router)
+Vue.use(Router);
 
 export default new Router({
   routes: [
     {
       path: '/',
-      name: 'Welcome',
-      component: Index
-    },
-    {
-      path: '/index',
-      name: 'Welcome',
+      name: 'Index',
       component: Index
     },
     {
@@ -31,8 +26,8 @@ export default new Router({
     },
     {
       path: '/about',
-      name: 'Aboutname',
+      name: 'About',
       component: About
     }
   ]
-})
+});
