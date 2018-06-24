@@ -1,9 +1,16 @@
 <template>
     <div id="article-footer">
-        <router-link to="/detail">
-            <el-button>阅读全文</el-button>
-        </router-link>
-        <br /> 发表时间：{{time}}&emsp;阅读量：{{readCount}}&emsp;文章标签：{{category}}
+        <el-row type="flex" justify="center" align="middle">
+            <router-link to="/detail">
+                <el-button>阅读全文</el-button>
+            </router-link>
+        </el-row>
+
+        <div class="article-info">
+            <i class="el-icon-time" />&nbsp;{{time}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="el-icon-view" />&nbsp;{{readCount}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="el-icon-menu" />&nbsp;{{category}}
+        </div>
     </div>
 </template>
 
@@ -20,4 +27,11 @@ export default {
   // props: 传入文章时间，阅读量，文章标签
 };
 </script>
+
+<style>
+.article-info {
+    padding: 20px 20px 0px 20px;
+}
+</style>
+
 

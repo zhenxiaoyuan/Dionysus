@@ -14,7 +14,7 @@
                         <AppHeader :appName="appName"></AppHeader>
                     </el-header>
 
-                    <el-main>
+                    <el-main class="main">
                         <router-view>
                         <!-- 内容区，根据路由发生改变 -->
                         </router-view>
@@ -55,8 +55,15 @@ export default {
 </script>
 
 <style>
+#app-layout {
+    background-color: #303133;
+}
 .blank {
   min-height: 100px;
+}
+.main {
+    padding: 0px;
+    min-height: 725px;
 }
 </style>
 

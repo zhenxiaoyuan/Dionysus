@@ -1,7 +1,7 @@
 <template>
-    <div class="article-brief">
-        <ArticleTitle title="title"></ArticleTitle>
-        <MarkdownDisplayer v-bind:input="content"></MarkdownDisplayer>
+    <div id="article-brief">
+        <ArticleTitle :title="title"></ArticleTitle>
+        <MarkdownDisplayer :input="content"></MarkdownDisplayer>
         <ArticleFooter></ArticleFooter>
     </div>
 </template>
@@ -29,10 +29,11 @@ export default {
 </script>
 
 <style>
-.article-brief {
+#article-brief {
   border: 1px solid #cccccc;
-  border-radius: 12px;
-  margin: 0px 30px 30px 30px;
+  border-radius: 6px;
+  background-color: white;
+  margin: 0px 30px 20px 30px;
   padding: 20px;
 }
 </style>

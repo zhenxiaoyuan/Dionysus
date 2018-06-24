@@ -5,6 +5,7 @@
                 {{title}}
             </button>
         </router-link>
+        <hr />
     </div>
 </template>
 
@@ -25,7 +26,8 @@ export default {
   background-color: #00000000; /* Green */
   border: none;
   color: #2a2b2e;
-  font-size: 20px;
+  font-size: 28px;
+  padding: 5px 20px;
 }
 </style>
 
