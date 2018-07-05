@@ -20,7 +20,8 @@ export default new Router({
       component: Detail
     },
     {
-      path: '/terminal/:id',
+      path: '/terminal',
+      // path: '/terminal/:id',
       name: 'Terminal',
       component: Terminal
     },

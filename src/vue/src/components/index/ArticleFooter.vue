@@ -7,9 +7,9 @@
         </el-row>
 
         <div class="article-info">
-            <i class="el-icon-time" />&nbsp;{{time}}&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="el-icon-view" />&nbsp;{{readCount}}&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="el-icon-menu" />&nbsp;{{category}}
+            <i class="el-icon-time" />&nbsp;{{this.time}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="el-icon-view" />&nbsp;{{this.readCount}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="el-icon-menu" />&nbsp;{{this.classify}}
         </div>
     </div>
 </template>
@@ -17,11 +17,12 @@
 <script>
 export default {
   name: "ArticleFooter",
-  data: function() {
+  props: ['time', 'readCount', 'classify'],
+  data() {
     return {
-      time: "Sun Feb 18 2018 05:22:33",
-      readCount: "54526",
-      category: "est"
+    //   time: "Sun Feb 18 2018 05:22:33",
+    //   readCount: "54526",
+    //   category: "est"
     };
   }
   // props: 传入文章时间，阅读量，文章标签

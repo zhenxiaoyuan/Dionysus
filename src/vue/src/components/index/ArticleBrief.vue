@@ -1,8 +1,8 @@
 <template>
     <div id="article-brief">
         <ArticleTitle :title="title"></ArticleTitle>
-        <MarkdownDisplayer :input="content"></MarkdownDisplayer>
-        <ArticleFooter></ArticleFooter>
+        <MarkdownDisplayer :input="content" ></MarkdownDisplayer>
+        <ArticleFooter :time="time" :readCount="readCount" :classify="classify"></ArticleFooter>
     </div>
 </template>
 
@@ -17,7 +17,10 @@ export default {
   data: function() {
     return {
       title: this.article.title,
-      content: this.article.content
+      content: this.article.content,
+      time: this.article.time,
+      readCount: this.article.readCount,
+      classify: this.article.classify
     };
   },
   components: {

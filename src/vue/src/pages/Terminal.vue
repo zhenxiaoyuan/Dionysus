@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-header>
+        <!-- <el-header>
                 <el-button type="text" disabled>
                     {{seletedArticle.title}}
                 </el-button>
@@ -13,9 +13,9 @@
             <el-button type="primary" circle @click="save">
                 <i class="el-icon-document" />
             </el-button>
-        </el-header>
+        </el-header> -->
         <el-container>
-            <el-aside width="200px">
+            <!-- <el-aside width="200px">
                 <el-row>
                     <el-col :span="4" :offset="18">
                         <el-button type="primary" circle @click="addArticle">
@@ -24,7 +24,7 @@
                     </el-col>
                 </el-row>
                 <ArticleSlot v-for="a in artilesList" :key="a.aid" :input="a" @select="select" @changeTitle="changeTitle" @deleteac="deleteac"/>
-            </el-aside>
+            </el-aside> -->
             <el-main>
                 <div id="editor">
                     <textarea v-model="seletedContent"></textarea>
@@ -66,27 +66,27 @@ export default {
     ArticleSlot
   },
   mounted(){
-    console.log(this.artilesList)
-    var userinfo=caller.getUserinfo(this.$route.params.id,this.$route.query.token)
-    if(userinfo.state!='ok'){
-        this.$router.push("/about")
-        return
-    }
-    var al=caller.getArticleList(this.$route.params.id)
-    console.log(al)
-    if(userinfo['state']=='ok'){
-        this.artilesList=al['filesList']
-        if((!this.artilesList)||this.artilesList.length==0)
-        {
-            this.seletedContent=''
-        }else{
-            this.seletedArticle=this.artilesList[0]
-            var c=caller.getArticle(this.$route.params.id,this.artilesList[0].aid)
-            if(c.state=='ok'){
-                this.seletedContent=c.article.content
-            }
-        }   
-    }
+    // console.log(this.artilesList)
+    // var userinfo=caller.getUserinfo(this.$route.params.id,this.$route.query.token)
+    // if(userinfo.state!='ok'){
+    //     this.$router.push("/about")
+    //     return
+    // }
+    // var al=caller.getArticleList(this.$route.params.id)
+    // console.log(al)
+    // if(userinfo['state']=='ok'){
+    //     this.artilesList=al['filesList']
+    //     if((!this.artilesList)||this.artilesList.length==0)
+    //     {
+    //         this.seletedContent=''
+    //     }else{
+    //         this.seletedArticle=this.artilesList[0]
+    //         var c=caller.getArticle(this.$route.params.id,this.artilesList[0].aid)
+    //         if(c.state=='ok'){
+    //             this.seletedContent=c.article.content
+    //         }
+    //     }   
+    // }
   },
   methods:{
       addArticle(){

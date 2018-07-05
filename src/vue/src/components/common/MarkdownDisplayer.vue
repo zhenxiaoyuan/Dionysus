@@ -1,5 +1,5 @@
 <template>
-    <div class="markdown-body mddisplay" v-html="compiledMarkdown" ></div>
+    <div class="markdown-body mddisplay" :style="widthStyle" v-html="compiledMarkdown" ></div>
 </template>
 
 <script>
@@ -29,7 +29,14 @@ export default {
       return marked(this.input, { sanitize: true })
     }
   },
-  props:['input']
+  props:['input', 'widthStyle'],
+  data() {
+    return {
+      widthStyle: {
+        width: this.widthStyle
+      }
+    }
+  } 
 }
 </script>
 
