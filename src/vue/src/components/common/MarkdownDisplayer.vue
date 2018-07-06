@@ -29,12 +29,10 @@ export default {
       return marked(this.input, { sanitize: true })
     }
   },
-  props:['input', 'widthStyle'],
+  props:['input', 'width'],
   data() {
     return {
-      widthStyle: {
-        width: this.widthStyle
-      }
+      widthStyle: this.width
     }
   } 
 }

@@ -1,7 +1,7 @@
 <template>
     <div id="article-brief">
         <ArticleTitle :title="title"></ArticleTitle>
-        <MarkdownDisplayer :input="content" ></MarkdownDisplayer>
+        <MarkdownDisplayer :width="{ width: '100%' }" :input="content" ></MarkdownDisplayer>
         <ArticleFooter :time="time" :readCount="readCount" :classify="classify"></ArticleFooter>
     </div>
 </template>

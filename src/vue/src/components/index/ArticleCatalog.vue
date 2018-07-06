@@ -2,10 +2,7 @@
     <div>
         <!-- ArticleCatalog -->
         <ul class="article-catalog-ul">
-            <li v-for="article in articles" 
-                v-bind:key="article.id"
-                style="list-style: none"
-            >
+            <li v-for="article in articles" v-bind:key="article.id" style="list-style: none">
                 <ArticleBrief v-bind:article="article.info"></ArticleBrief>
             </li>
         </ul>
@@ -18,9 +15,9 @@ import ArticleBrief from "./ArticleBrief";
 export default {
   name: "ArticleCatalog",
   mounted() {
-      this.axios.get('/api/article/all').then((response) => {
-        this.articles = JSON.parse(response.data);
-      });
+    this.axios.get("/api/article/all").then(response => {
+      this.articles = JSON.parse(response.data);
+    });
   },
   data() {
     return {
@@ -35,8 +32,8 @@ export default {
 
 <style>
 .article-catalog-ul {
-    padding: 0px;
-    margin: 0px;
+  padding: 0px;
+  margin: 0px;
 }
 </style>
 
