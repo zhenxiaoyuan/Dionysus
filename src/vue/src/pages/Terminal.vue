@@ -10,8 +10,7 @@
             <el-button type="primary" circle>
                 <i class="el-icon-upload" />
             </el-button> -->
-            <el-input placeholder="请输入标题" v-model="title" clearable>
-            </el-input>
+            <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
             <el-button type="primary" @click="save">
                 <i class="el-icon-document" />
             </el-button>
@@ -29,12 +28,14 @@
             </el-aside> -->
             <el-main>
                 <div id="editor">
-                    <textarea v-model="seletedContent"></textarea>
-                    <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="seletedContent" />
+                    <textarea v-model="content"></textarea>
+                    <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="content" />
                 </div>
             </el-main>
         </el-container>
-
+        <el-footer>
+            <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
+        </el-footer>
     </div>
 
 </template>
@@ -50,7 +51,8 @@ export default {
     return {
       //     seletedArticle:{title:'unknown'},
       title: "",
-      seletedContent: ""
+      content: "",
+      classify: ""
       //     artilesList: [
       //     {
       //       title: "a1"
@@ -96,11 +98,12 @@ export default {
       this.axios
         .post("/api/article/add", {
           //   article: {
-          id: "12131312",
-          info: {
-            title: "aljflaefla",
-            content: "sdlaifclaie"
-          }
+        //   id: this.title,
+        //   info: {
+            title: this.title,
+            content: this.content,
+            classify: this.classify
+        //   }
           //   }
         })
         .then(response => {
