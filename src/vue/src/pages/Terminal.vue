@@ -1,159 +1,51 @@
 <template>
-    <div>
-        <el-header>
-            <!-- <el-button type="text" disabled>
-                    {{seletedArticle.title}}
-                </el-button> -->
-            <!-- <el-button type="primary" circle>
-                <i class="el-icon-picture" />
-            </el-button>
-            <el-button type="primary" circle>
-                <i class="el-icon-upload" />
-            </el-button> -->
-            <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
-            <el-button type="primary" @click="save">
-                <i class="el-icon-document" />
-            </el-button>
-        </el-header>
-        <el-container>
-            <!-- <el-aside width="200px">
-                <el-row>
-                    <el-col :span="4" :offset="18">
-                        <el-button type="primary" circle @click="addArticle">
-                            <i class="el-icon-plus" />
-                        </el-button>
-                    </el-col>
-                </el-row>
-                <ArticleSlot v-for="a in artilesList" :key="a.aid" :input="a" @select="select" @changeTitle="changeTitle" @deleteac="deleteac"/>
-            </el-aside> -->
-            <el-main>
-                <div id="editor">
-                    <textarea v-model="content"></textarea>
-                    <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="content" />
-                </div>
-            </el-main>
-        </el-container>
-        <el-footer>
-            <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
-        </el-footer>
+    <div id="terminal-page">
+        <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
+
+        <div id="editor">
+            <textarea v-model="content"></textarea>
+            <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="content" />
+        </div>
+        <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
+        <el-button type="primary" @click="save">
+            <i class="el-icon-document" />
+        </el-button>
     </div>
 
 </template>
 <script>
 import MarkdownDisplayer from "../components/common/MarkdownDisplayer";
 import MarkdownEditor from "../components/common/MarkdownEditor";
-import ArticleSlot from "../components/common/ArticleSlot";
-import Caller from "../apiCaller.js";
-const caller = new Caller();
+
 export default {
   name: "Terminal",
   data() {
     return {
-      //     seletedArticle:{title:'unknown'},
       title: "",
       content: "",
       classify: ""
-      //     artilesList: [
-      //     {
-      //       title: "a1"
-      //     },
-      //     {
-      //       title: "a3"
-      //     },
-      //     {
-      //       title: "a41"
-      //     }
-      //   ]
     };
   },
   components: {
-    MarkdownDisplayer,
-    ArticleSlot
-  },
-  mounted() {
-    // console.log(this.artilesList)
-    // var userinfo=caller.getUserinfo(this.$route.params.id,this.$route.query.token)
-    // if(userinfo.state!='ok'){
-    //     this.$router.push("/about")
-    //     return
-    // }
-    // var al=caller.getArticleList(this.$route.params.id)
-    // console.log(al)
-    // if(userinfo['state']=='ok'){
-    //     this.artilesList=al['filesList']
-    //     if((!this.artilesList)||this.artilesList.length==0)
-    //     {
-    //         this.seletedContent=''
-    //     }else{
-    //         this.seletedArticle=this.artilesList[0]
-    //         var c=caller.getArticle(this.$route.params.id,this.artilesList[0].aid)
-    //         if(c.state=='ok'){
-    //             this.seletedContent=c.article.content
-    //         }
-    //     }
-    // }
+    MarkdownDisplayer
   },
   methods: {
     save() {
       this.axios
         .post("/api/article/add", {
           //   article: {
-        //   id: this.title,
-        //   info: {
-            title: this.title,
-            content: this.content,
-            classify: this.classify
-        //   }
+          //   id: this.title,
+          //   info: {
+          title: this.title,
+          content: this.content,
+          classify: this.classify
+          //   }
           //   }
         })
         .then(response => {
           console.log(response.data);
         });
     }
-    //   addArticle(){
-    //       console.log("addArticle clicked")
-    //       var s=caller.uploadArticle(this.$route.params.id,this.$route.query.token,undefined,'new article',"")
-    //       console.log(s)
-    //       if(s.state=='ok'){
-    //           this.artilesList=s.al
-    //           this.seletedArticle=this.artilesList[this.artilesList.length-1]
-    //           this.seletedContent=s.lc
-    //           console.log(this.seletedContent)
-    //       }
-    //   },
-    //   save(){
-    //       console.log(this.seletedArticle)
-    //        var s=caller.uploadArticle(this.$route.params.id,this.$route.query.token,this.seletedArticle.aid,undefined,this.seletedContent)
-    //        alert(s.state)
-    //   },
-    //   select(a){
-    //       var c=caller.getArticle(this.$route.params.id,a.aid)
-    //       if(c.state=='ok'){
-    //             this.seletedContent=c.article.content
-    //             this.seletedArticle=a
-    //         }
-    //   },
-    //   changeTitle(a,changedTitle){
-    //       var s=caller.uploadArticle(this.$route.params.id,this.$route.query.token,a.aid,changedTitle,undefined)
-    //       if(s.state=='ok'){
-    //           this.artilesList=s.al
-    //           var tmp=a
-    //           tmp.title=changedTitle
-    //           this.seletedArticle=tmp
-    //       }
-    //   },
-    //   deleteac(a){
-    //       console.log("deleteac IN t")
-    //       var f = caller.deleteArticle(this.$route.params.id,this.$route.query.token,a.aid)
-    //       if(f.state=='ok'){
-    //      this.$message({
-    //         type: 'success',
-    //         message: '删除成功!'
-    //       });
-    //       this.artilesList=f.al
-    //       this.seletedArticle= this.artilesList.length==0?{title:'unknown'}:this.artilesList[0]
-    //       }
-    //   }
   }
 };
 </script>

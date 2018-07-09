@@ -1,6 +1,6 @@
 <template>
     <div id="article-title">
-        <router-link to="/detail">
+        <router-link :to="'/detail/' + this.id">
             <button class="title-button">
                 {{title}}
             </button>
@@ -12,7 +12,7 @@
 <script>
 export default {
   name: "ArticleTitle",
-  props: ["title"],
+  props: ["title", "id"],
   methods: {
     say: function() {
       alert(this.title);

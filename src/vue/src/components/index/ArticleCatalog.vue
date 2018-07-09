@@ -3,7 +3,7 @@
         <!-- ArticleCatalog -->
         <ul class="article-catalog-ul">
             <li v-for="article in articles" v-bind:key="article.id" style="list-style: none">
-                <ArticleBrief v-bind:article="article.info"></ArticleBrief>
+                <ArticleBrief v-bind:article="article"></ArticleBrief>
             </li>
         </ul>
     </div>

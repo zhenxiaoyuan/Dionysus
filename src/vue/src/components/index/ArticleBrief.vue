@@ -1,8 +1,8 @@
 <template>
     <div id="article-brief">
-        <ArticleTitle :title="title"></ArticleTitle>
+        <ArticleTitle :id="id" :title="title"></ArticleTitle>
         <MarkdownDisplayer :width="{ width: '100%' }" :input="content" ></MarkdownDisplayer>
-        <ArticleFooter :time="time" :readCount="readCount" :classify="classify"></ArticleFooter>
+        <ArticleFooter :id="id" :time="time" :readcount="readcount" :classify="classify"></ArticleFooter>
     </div>
 </template>
 
@@ -16,11 +16,12 @@ export default {
   props: ["article"],
   data: function() {
     return {
-      title: this.article.title,
-      content: this.article.content,
-      time: this.article.time,
-      readCount: this.article.readCount,
-      classify: this.article.classify
+      id: this.article.id,
+      title: this.article.info.title,
+      content: this.article.info.content,
+      time: this.article.info.time,
+      readcount: this.article.info.readcount,
+      classify: this.article.info.classify
     };
   },
   components: {

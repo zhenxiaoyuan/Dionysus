@@ -8,7 +8,7 @@
 
         <div class="article-info">
             <i class="el-icon-time" />&nbsp;{{this.time}}&nbsp;&nbsp;&nbsp;&nbsp;
-            <i class="el-icon-view" />&nbsp;{{this.readCount}}&nbsp;&nbsp;&nbsp;&nbsp;
+            <i class="el-icon-view" />&nbsp;{{this.readcount}}&nbsp;&nbsp;&nbsp;&nbsp;
             <i class="el-icon-menu" />&nbsp;{{this.classify}}
         </div>
     </div>
@@ -17,7 +17,7 @@
 <script>
 export default {
   name: "ArticleFooter",
-  props: ['time', 'readCount', 'classify'],
+  props: ['time', 'readcount', 'classify'],
   data() {
     return {
     //   time: "Sun Feb 18 2018 05:22:33",

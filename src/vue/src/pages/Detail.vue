@@ -1,8 +1,8 @@
 <template>
-    <div id="detail-container">
+    <div id="detail-page">
         <el-row>
             <el-col :span="18">
-                <ArticleDetail></ArticleDetail>
+                <ArticleDetail :id="this.$route.params.id"></ArticleDetail>
             </el-col>
             <el-col :span="6">
                 <AppAside></AppAside>
@@ -20,6 +20,12 @@ export default {
     components: {
         AppAside,
         ArticleDetail
+    },
+    // data() {
+    //     id = this.$route.params.id
+    // },
+    mounted() {
+        console.log(this.$route.params.id);
     }
 };
 </script>

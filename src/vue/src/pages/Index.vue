@@ -1,5 +1,5 @@
 <template>
-    <div id="index-container">
+    <div id="index-page">
         <el-row>
             <el-col :span="18">
                 <ArticleCatalog></ArticleCatalog>
