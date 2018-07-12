@@ -3,7 +3,8 @@ import Router from 'vue-router';
 import About from '@/pages/About';
 import Index from '@/pages/Index';
 import Detail from '@/pages/Detail';
-import Terminal from '@/pages/Terminal';
+import Terminal from '@/pages/Terminal/Index';
+import Edit from '@/pages/Terminal/Edit';
 
 Vue.use(Router);
 
@@ -24,6 +25,11 @@ export default new Router({
       // path: '/terminal/:id',
       name: 'Terminal',
       component: Terminal
+    },
+    {
+      path: '/terminal/edit',
+      name: 'Edit',
+      component: Edit
     },
     {
       path: '/about',

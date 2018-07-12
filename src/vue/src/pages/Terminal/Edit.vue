@@ -1,5 +1,5 @@
 <template>
-    <div id="terminal-page">
+    <div id="terminal-edit">
         <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
 
         <div id="editor">
@@ -14,11 +14,11 @@
 
 </template>
 <script>
-import MarkdownDisplayer from "../components/common/MarkdownDisplayer";
-import MarkdownEditor from "../components/common/MarkdownEditor";
+import MarkdownDisplayer from "@/components/common/MarkdownDisplayer";
+import MarkdownEditor from "@/components/common/MarkdownEditor";
 
 export default {
-  name: "Terminal",
+  name: "Edit",
   data() {
     return {
       title: "",
