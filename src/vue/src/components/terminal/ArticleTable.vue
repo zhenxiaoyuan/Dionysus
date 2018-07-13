@@ -45,27 +45,34 @@ export default {
       articleWillDelete: ""
     };
   },
+  mounted() {
+    //   console.log("refresh");
+  },
   methods: {
-      prepareDelete(articleId) {
-          this.articleWillDelete = articleId;
-          this.dialogDeleteVisible = true;
-          console.log(this.articleWillDelete)
-      },
+    prepareDelete(articleId) {
+      this.articleWillDelete = articleId;
+      this.dialogDeleteVisible = true;
+      console.log(this.articleWillDelete);
+    },
     confirmDelete() {
+      console.log("confirm");
       this.axios
         .post("/api/article/delete", {
           //   article: {
           //   id: this.title,
           //   info: {
-        //   title: this.title,
-        //   content: this.content,
-        //   classify: this.classify
-        // Id: 
+          //   title: this.title,
+          //   content: this.content,
+          //   classify: this.classify
+          // Id:
           //   }
           //   }
+          id: this.articleWillDelete,
+          info: {}
         })
         .then(response => {
           console.log(response.data);
+          this.deleteSuccess();
         });
     },
     deleteSuccess() {
@@ -76,6 +83,9 @@ export default {
         center: true
       });
       this.dialogDeleteVisible = false;
+    // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
+    //   window.history.go(0);
+      
     }
   }
 };
