@@ -1,8 +1,8 @@
 <template>
     <div id="article-detail">
-        <ArticleTitle :id="this.article.id" :title="this.article.info.title"></ArticleTitle>
+        <ArticleTitle :id="id" :title="this.article.info.title"></ArticleTitle>
         <MarkdownDisplayer :width="{ width: '100%' }" :input="this.article.info.content" ></MarkdownDisplayer>
-        <ArticleFooter :id="this.article.id" :time="this.article.info.time" :readcount="this.article.info.readcount" :classify="this.article.info.classify"></ArticleFooter>
+        <ArticleFooter :id="id" :time="this.article.info.time" :readcount="this.article.info.readcount" :classify="this.article.info.classify"></ArticleFooter>
     </div>
 </template>
 
@@ -20,17 +20,36 @@ export default {
     MarkdownDisplayer
   },
   mounted() {
+    // console.log("article detail is mounted")
+    // console.log(this.id)
     this.axios.get("/api/article/" + this.id).then(response => {
       this.article = JSON.parse(response.data);
-      console.log(this.article)
-      console.log(this.article.id)
+      // console.log(JSON.stringify(response.data))
+      // console.log(this.article.id)
     });
   },
   data() {
     return {
-        article: {},
+      // title: this.test.info.title
+      // id: this.article.id,
+      // title: this.article.info.title,
+      // content: this.article.info.content,
+      // time: this.article.info.time,
+      // readcount: this.article.info.readcount,
+      // classify: this.article.info.classify
+        article: {
+          id: "",
+          info: {
+            title: "",
+            content: "",
+            time: "",
+            readcount: "",
+            classify: ""
+          }
+        },
+        // title: ""
     //   id: article.id,
-    //   title: article.info.title,
+      // title: article.info.title,
     //   content: this.article.info.content,
     //   time: this.article.info.time,
     //   readcount: this.article.info.readcount,
