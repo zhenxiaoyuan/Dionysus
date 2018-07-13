@@ -27,7 +27,7 @@ export default new Router({
       component: Terminal
     },
     {
-      path: '/terminal/edit',
+      path: '/terminal/edit/:id?',
       name: 'Edit',
       component: Edit
     },

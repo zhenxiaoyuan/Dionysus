@@ -1,16 +1,16 @@
 <template>
-    <div id="terminal-edit">
-        <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
+  <div id="terminal-edit">
+    <el-input placeholder="请输入标题" v-model="this.article.info.title" clearable></el-input>
 
-        <div id="editor">
-            <textarea v-model="content"></textarea>
-            <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="content" />
-        </div>
-        <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
-        <el-button type="primary" @click="save">
-            <i class="el-icon-document" />
-        </el-button>
+    <div id="editor">
+      <textarea v-model="this.article.info.content"></textarea>
+      <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="this.article.info.content" />
     </div>
+    <el-input placeholder="请输入分类" v-model="this.article.info.classify" clearable></el-input>
+    <el-button type="primary" @click="save">
+      <i class="el-icon-document" />
+    </el-button>
+  </div>
 
 </template>
 <script>
@@ -21,13 +21,36 @@ export default {
   name: "Edit",
   data() {
     return {
-      title: "",
-      content: "",
-      classify: ""
+      article: {
+        id: " ",
+        info: {
+          title: " ",
+          content: " ",
+          time: " ",
+          readcount: " ",
+          classify: " "
+        }
+      }
+      
+      // title: "",
+      // content: "",
+      // classify: ""
     };
   },
   components: {
     MarkdownDisplayer
+  },
+  mounted() {
+    if (this.$route.params.id != null) {
+      console.log(this.$route.params.id);
+      this.axios.get("/api/article/" + this.$route.params.id).then(response => {
+        this.article = JSON.parse(response.data);
+        // console.log(JSON.stringify(response.data))
+        // console.log(this.article.id)
+      });
+    } else {
+      console.log("just add an article");
+    }
   },
   methods: {
     save() {
