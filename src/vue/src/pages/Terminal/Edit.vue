@@ -29,7 +29,8 @@ export default {
           readcount: " ",
           classify: " "
         }
-      }
+      }, 
+
       
       // title: "",
       // content: "",
@@ -48,25 +49,33 @@ export default {
         // console.log(this.article.id)
       });
     } else {
-      console.log("just add an article");
+      console.log("Let's add a new article");
     }
   },
   methods: {
     save() {
-      this.axios
+      // if (this.$route.params.id != null) {
+        this.axios
         .post("/api/article/add", {
-          //   article: {
-          //   id: this.title,
-          //   info: {
           title: this.title,
           content: this.content,
           classify: this.classify
-          //   }
-          //   }
         })
         .then(response => {
           console.log(response.data);
         });
+      // } else {
+        // 在这里加一层校验，如果没有改变就不用和服务器通信了
+      //   this.axios
+      //   .post("/api/article/update", {
+      //     title: this.title,
+      //     content: this.content,
+      //     classify: this.classify
+      //   })
+      //   .then(response => {
+      //     console.log(response.data);
+      //   });
+      // }
     }
   }
 };
