@@ -1,8 +1,8 @@
 <template>
     <div id="article-detail">
-        <ArticleTitle :id="id" :title="this.article.info.title"></ArticleTitle>
-        <MarkdownDisplayer :width="{ width: '100%' }" :input="this.article.info.content" ></MarkdownDisplayer>
-        <ArticleFooter :id="id" :time="this.article.info.time" :readcount="this.article.info.readcount" :classify="this.article.info.classify"></ArticleFooter>
+        <ArticleTitle :id="id" :title="article.info.title"></ArticleTitle>
+        <MarkdownDisplayer :width="{ width: '100%' }" :input="article.info.content" ></MarkdownDisplayer>
+        <ArticleFooter :id="id" :time="article.info.time" :readcount="article.info.readcount" :classify="article.info.classify"></ArticleFooter>
     </div>
 </template>
 

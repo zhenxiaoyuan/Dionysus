@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table :data="this.articles" style="width: 100%">
+        <el-table :data="articles" style="width: 100%">
             <el-table-column label="标题">
                 <template slot-scope="scope">
                     <router-link :to="'/detail/' + scope.row.id">

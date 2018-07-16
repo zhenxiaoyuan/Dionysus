@@ -1,17 +1,16 @@
 <template>
   <div id="terminal-edit">
-    <el-input placeholder="请输入标题" v-model="this.article.info.title" clearable></el-input>
+    <el-input placeholder="请输入标题" v-model="article.info.title" clearable></el-input>
 
     <div id="editor">
-      <textarea v-model="this.article.info.content"></textarea>
-      <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="this.article.info.content" />
+      <textarea v-model="article.info.content"></textarea>
+      <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="article.info.content" />
     </div>
-    <el-input placeholder="请输入分类" v-model="this.article.info.classify" clearable></el-input>
+    <el-input placeholder="请输入分类" v-model="article.info.classify" clearable></el-input>
     <el-button type="primary" @click="save">
       <i class="el-icon-document" />
     </el-button>
   </div>
-
 </template>
 <script>
 import MarkdownDisplayer from "@/components/common/MarkdownDisplayer";

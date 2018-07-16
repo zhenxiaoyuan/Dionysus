@@ -6,7 +6,7 @@
             </el-button>
         </router-link>
 
-        <ArticleTable :articles="this.articles"></ArticleTable>
+        <ArticleTable :articles="articles"></ArticleTable>
         <!-- <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
 
         <div id="editor">

@@ -2,7 +2,7 @@
     <div id="detail-page">
         <el-row>
             <el-col :span="18">
-                <ArticleDetail :id="this.id"></ArticleDetail>
+                <ArticleDetail :id="id"></ArticleDetail>
             </el-col>
             <el-col :span="6">
                 <AppAside></AppAside>
