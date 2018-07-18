@@ -43,11 +43,12 @@ export default {
   mounted() {
     if (this.$route.params.id != null) {
       console.log(this.$route.params.id);
-      this.axios.get("/api/article/" + this.$route.params.id).then(response => {
-        this.article = JSON.parse(response.data);
-        // console.log(JSON.stringify(response.data))
-        // console.log(this.article.id)
-      });
+      this.article = this.$store.getters.oneArticle(this.$route.params.id);
+      // this.axios.get("/api/article/" + this.$route.params.id).then(response => {
+      //   this.article = JSON.parse(response.data);
+      //   // console.log(JSON.stringify(response.data))
+      //   // console.log(this.article.id)
+      // });
     } else {
       console.log("Let's add a new article");
     }

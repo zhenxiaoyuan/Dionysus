@@ -21,12 +21,14 @@ export default {
   },
   mounted() {
     // console.log("article detail is mounted")
-    // console.log(this.id)
-    this.axios.get("/api/article/" + this.id).then(response => {
-      this.article = JSON.parse(response.data);
-      // console.log(JSON.stringify(response.data))
-      // console.log(this.article.id)
-    });
+    console.log(this.id)
+    this.article = this.$store.getters.oneArticle(this.id);
+    
+    // this.axios.get("/api/article/" + this.id).then(response => {
+    //   this.article = JSON.parse(response.data);
+    //   // console.log(JSON.stringify(response.data))
+    //   // console.log(this.article.id)
+    // });
   },
   data() {
     return {

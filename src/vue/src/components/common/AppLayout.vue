@@ -15,9 +15,15 @@
                     </el-header>
 
                     <el-main class="main">
-                        <router-view>
-                        <!-- 内容区，根据路由发生改变 -->
+                        <keep-alive>
+                            <router-view v-if="$route.meta.keepAlive">
+                                <!-- 内容区，根据路由发生改变 -->
+                            </router-view>
+                        </keep-alive>
+                        <router-view v-if="!$route.meta.keepAlive">
+                            <!-- 内容区，根据路由发生改变 -->
                         </router-view>
+
                     </el-main>
 
                     <!-- 页脚 -->
@@ -46,24 +52,24 @@ export default {
     AppHeader,
     AppFooter
   },
-  data: function () {
-      return {
-          appName: "Dionysus"
-      }
+  data: function() {
+    return {
+      appName: "Dionysus"
+    };
   }
 };
 </script>
 
 <style>
 #app-layout {
-    background-color: #303133;
+  background-color: #303133;
 }
 .blank {
   min-height: 100px;
 }
 .main {
-    padding: 0px;
-    min-height: 725px;
+  padding: 0px;
+  min-height: 725px;
 }
 </style>
 

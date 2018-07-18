@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table :data="articles" style="width: 100%">
+        <el-table :data="tableData" style="width: 100%">
             <el-table-column label="标题">
                 <template slot-scope="scope">
                     <router-link :to="'/detail/' + scope.row.id">
@@ -14,7 +14,7 @@
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="200">
                 <template slot-scope="scope">
-                    <router-link :to="'/terminal/edit/' + scope.row.id" >
+                    <router-link :to="'/edit/' + scope.row.id" >
                         <el-button size="mini">
                             <i class="el-icon-edit" /> 编辑
                         </el-button>
@@ -41,12 +41,14 @@ export default {
   props: ["articles"],
   data() {
     return {
+    tableData: this.articles,
       dialogDeleteVisible: false,
       articleWillDelete: ""
     };
   },
   mounted() {
-    //   console.log("refresh");
+    //   console.log(this.articles);
+    console.log("table")
   },
   methods: {
     prepareDelete(articleId) {
