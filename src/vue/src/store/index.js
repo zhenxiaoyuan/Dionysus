@@ -25,7 +25,9 @@ export default new Vuex.Store({
       // state.articles.push(...payload.articles);
         state.articles = state.articles.concat(payload.articles);
       // console.log(JSON.stringify(payload.articles));
-      // console.log("1" + this.getters.allArticles);
+      console.log("1" + this.getters.allArticles);
+      console.log("2" + JSON.stringify(this.getters.allArticles));
+
       console.log(JSON.stringify(this.getters.oneArticle("test3")));
 
     },
