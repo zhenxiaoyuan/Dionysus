@@ -37,7 +37,7 @@ export default {
       type: "initArticlesAsync"
       // article: this.testArticle
     });
-    console.log("index")
+    // console.log("index")
     // this.axios.get("/api/article/all").then(response => {
     //   this.articles = JSON.parse(response.data);
     // });

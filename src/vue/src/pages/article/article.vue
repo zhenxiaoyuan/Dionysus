@@ -12,12 +12,16 @@
 </template>
 
 <script>
-import AppAside from "@/components/common/AppAside";
-import ArticleDetail from "@/components/index/ArticleDetail";
+import AppAside from "@/components/app/asider";
+import ArticleDetail from "@/components/article/ArticleDetail";
 
 export default {
-  name: "Detail",
-  
+  data() {
+    return {
+      id: this.$route.params.id,
+        // article: {}
+    }
+  },
   mounted() {
     //   console.log("detail is mounted")
     // this.axios.get("/api/article/" + this.$route.params.id).then(response => {
@@ -28,12 +32,7 @@ export default {
     // });
     
   },
-  data() {
-    return {
-      id: this.$route.params.id,
-        // article: {}
-    }
-  },
+  
   components: {
     AppAside,
     ArticleDetail

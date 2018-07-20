@@ -14,15 +14,20 @@ export default new Vuex.Store({
     allArticles: state => {
       return state.articles;
     }, 
-    oneArticle: state => id => {
+    oneArticle: (state) => (id) => {
+      console.log("get one")
       return state.articles.find(article => article.id === id);
+      // return state.articles.length;
     }
   },
   mutations: {
     initArticles(state, payload) {
-      state.articles = payload.articles;
-      //   state.articles = state.articles.concat(payload.articles);
-      console.log(JSON.stringify(state.articles));
+      // state.articles.push(...payload.articles);
+        state.articles = state.articles.concat(payload.articles);
+      // console.log(JSON.stringify(payload.articles));
+      // console.log("1" + this.getters.allArticles);
+      console.log(JSON.stringify(this.getters.oneArticle("test3")));
+
     },
     // 这个做成分页加载
     // loadArticles(state, payload) {
@@ -36,16 +41,16 @@ export default new Vuex.Store({
     }
   },
   actions: {
-    initArticlesAsync(context) {
+    initArticlesAsync(context, payload) {
       // 记得添加错误处理
-      axios.get("/api/article/all").then(response => {
+      // axios.get("/api/article/all").then(response => {
         context.commit({
           type: 'initArticles',
-          articles: JSON.parse(response.data)
+          articles: payload.articles
         })
         // console.log("I should come at last.")
         // JSON.parse(response.data);
-      });
+      // });
     },
     // loadArticlesAsync(context) {
     //   // 记得添加错误处理

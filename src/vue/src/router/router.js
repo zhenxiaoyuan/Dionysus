@@ -1,11 +1,11 @@
 import Vue from 'vue';
 import Router from 'vue-router';
-import App from '@/App';
-import About from '@/pages/About';
-import Index from '@/pages/Index';
-import Detail from '@/pages/Detail';
-import Terminal from '@/pages/Terminal';
-import Edit from '@/pages/Edit';
+// import App from '@/App';
+import about from '@/pages/about/about';
+import home from '@/pages/home/home';
+import article from '@/pages/article/article';
+import terminal from '@/pages/terminal/terminal';
+import edit from '@/pages/terminal/children/edit';
 
 Vue.use(Router);
 
@@ -19,34 +19,30 @@ export default new Router({
     //   },
     //   {
         path: '/',
-        component: Index,
+        component: home,
         meta: {
           keepAlive: true
         }
       },
       {
         path: '/detail/:id',
-        name: 'Detail',
-        component: Detail,
+        component: article,
       },
       {
         path: '/edit/:id?',
-        name: 'Edit',
-        component: Edit,
+        component: edit,
       },
       {
         path: '/terminal',
         // path: '/terminal/:id',
-        name: 'Terminal',
-        component: Terminal,
+        component: terminal,
         meta: {
           keepAlive: true
         }
       },
       {
         path: '/about',
-        name: 'About',
-        component: About,
+        component: about,
         meta: {
           keepAlive: true
         }

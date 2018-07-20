@@ -11,10 +11,10 @@
                 <el-container>
                     <!-- 页头 -->
                     <el-header height="">
-                        <AppHeader :appName="appName"></AppHeader>
+                        <app-header :app-name="appName"></app-header>
                     </el-header>
 
-                    <el-main class="main">
+                    <el-main class="app-main">
                         <keep-alive>
                             <router-view v-if="$route.meta.keepAlive">
                                 <!-- 内容区，根据路由发生改变 -->
@@ -28,7 +28,7 @@
 
                     <!-- 页脚 -->
                     <el-footer height="">
-                        <AppFooter :appName="appName"></AppFooter>
+                        <app-footer :app-name="appName"></app-footer>
                     </el-footer>
                 </el-container>
             </el-col>
@@ -43,21 +43,20 @@
 </template>
 
 <script>
-import AppHeader from "./AppHeader";
-import AppFooter from "./AppFooter";
+import appHeader from './header'
+import appFooter from './footer'
 
 export default {
-  name: "AppLayout",
   components: {
-    AppHeader,
-    AppFooter
+    appHeader,
+    appFooter
   },
-  data: function() {
+  data () {
     return {
-      appName: "Dionysus"
-    };
+      appName: "Dionysus"   // 应用名称
+    }
   }
-};
+}
 </script>
 
 <style>
@@ -67,7 +66,7 @@ export default {
 .blank {
   min-height: 100px;
 }
-.main {
+.app-main {
   padding: 0px;
   min-height: 725px;
 }

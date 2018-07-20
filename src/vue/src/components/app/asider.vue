@@ -6,7 +6,6 @@
 
 <script>
 export default {
-    name: "AppAside"
 }
 </script>
 
