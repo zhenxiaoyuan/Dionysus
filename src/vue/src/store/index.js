@@ -1,10 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-// import "@/assets/js/axios"; // 引入 axios
 
 Vue.use(Vuex);
 
-const axios = require('axios');
 
 export default new Vuex.Store({
   state: {
@@ -43,7 +41,7 @@ export default new Vuex.Store({
     },
 
     deleteArticle(state, payload) {
-      state.articles.splice(state.articles.indexOf(payload.article));
+      state.articles.splice(state.articles.indexOf(payload.article), 1);
       // console.log(this.getters.allArticles)
       // for (var i = 0; i < state.articles.indexOf(payload.articleId))
       // console.log(JSON.stringify(payload.article))
@@ -73,15 +71,15 @@ export default new Vuex.Store({
     //     // JSON.parse(response.data);
     //   });
     // },
-    addArticleAsync(context, payload) {
-      axios.get("/api/test").then(response => {
-        console.log(response.data);
-        context.commit({
-          type: 'addArticle',
-          article: payload
-        })
-      });
+    // addArticleAsync(context, payload) {
+    //   axios.get("/api/test").then(response => {
+    //     console.log(response.data);
+    //     context.commit({
+    //       type: 'addArticle',
+    //       article: payload
+    //     })
+    //   });
 
-    }
+    // }
   }
 });

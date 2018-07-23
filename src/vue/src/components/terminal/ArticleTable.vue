@@ -36,6 +36,8 @@
 </template>
 
 <script>
+import { deleteArticle } from "@/service/getData";
+
 export default {
   props: ["articles"],
 
@@ -52,16 +54,10 @@ export default {
       this.dialogDeleteVisible = true;
     },
     confirmDelete() {
-      //   this.axios
-      //     .post("/api/article/delete", {
-      //       id: this.articleWillDelete,
-      //       info: {}
-      //     })
-      //     .then(response => {
-      //       console.log(response.data);
-      //       this.deleteSuccess();
-      //     });
-      this.deleteSuccess();
+      deleteArticle(this.articleWillDelete).then(response => {
+        // console.log(response.data);
+        this.deleteSuccess();
+      });
     },
     deleteSuccess() {
       this.$message({
@@ -72,9 +68,9 @@ export default {
       });
       this.dialogDeleteVisible = false;
       this.$store.commit({
-          type: 'deleteArticle',
-          article: this.articleWillDelete
-      })
+        type: "deleteArticle",
+        article: this.articleWillDelete
+      });
       // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
       //   window.history.go(0);
     }

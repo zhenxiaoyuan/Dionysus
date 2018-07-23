@@ -12,6 +12,7 @@
 <script>
 import articleCatalog from '@/components/article/catalog'
 import appAsider from '@/components/app/asider'
+import { initArticles } from '@/service/getData'
 
 export default {
   data() {
@@ -22,13 +23,13 @@ export default {
 
   mounted() {
     // 后期并入service
-    this.axios.get("/api/article/all").then(response => {
-      this.articles = JSON.parse(response.data);
+    initArticles().then(response => {
+      this.articles = JSON.parse(response.data)
       this.$store.dispatch({
         type: "initArticlesAsync",
         articles: this.articles
       });
-    });
+    })
   },
 
   components: {
