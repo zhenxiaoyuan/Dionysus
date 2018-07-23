@@ -1,6 +1,6 @@
 <template>
     <div>
-        <el-table :data="tableData" style="width: 100%">
+        <el-table :data="articles" style="width: 100%">
             <el-table-column label="标题">
                 <template slot-scope="scope">
                     <router-link :to="'/detail/' + scope.row.id">
@@ -14,12 +14,12 @@
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="200">
                 <template slot-scope="scope">
-                    <router-link :to="'/edit/' + scope.row.id" >
+                    <router-link :to="'/edit/' + scope.row.id">
                         <el-button size="mini">
                             <i class="el-icon-edit" /> 编辑
                         </el-button>
                     </router-link>
-                    <el-button size="mini" type="danger" @click="prepareDelete(scope.row.id)">
+                    <el-button size="mini" type="danger" @click="prepareDelete(scope.row)">
                         <i class="el-icon-delete" /> 删除
                     </el-button>
                 </template>
@@ -37,45 +37,31 @@
 
 <script>
 export default {
-  name: "ArticleTable",
   props: ["articles"],
+
   data() {
     return {
-    tableData: this.articles,
       dialogDeleteVisible: false,
-      articleWillDelete: ""
+      articleWillDelete: {}
     };
   },
-  mounted() {
-    //   console.log(this.articles);
-    console.log("table")
-  },
+
   methods: {
-    prepareDelete(articleId) {
-      this.articleWillDelete = articleId;
+    prepareDelete(article) {
+      this.articleWillDelete = article;
       this.dialogDeleteVisible = true;
-      console.log(this.articleWillDelete);
     },
     confirmDelete() {
-      console.log("confirm");
-      this.axios
-        .post("/api/article/delete", {
-          //   article: {
-          //   id: this.title,
-          //   info: {
-          //   title: this.title,
-          //   content: this.content,
-          //   classify: this.classify
-          // Id:
-          //   }
-          //   }
-          id: this.articleWillDelete,
-          info: {}
-        })
-        .then(response => {
-          console.log(response.data);
-          this.deleteSuccess();
-        });
+      //   this.axios
+      //     .post("/api/article/delete", {
+      //       id: this.articleWillDelete,
+      //       info: {}
+      //     })
+      //     .then(response => {
+      //       console.log(response.data);
+      //       this.deleteSuccess();
+      //     });
+      this.deleteSuccess();
     },
     deleteSuccess() {
       this.$message({
@@ -85,9 +71,12 @@ export default {
         center: true
       });
       this.dialogDeleteVisible = false;
-    // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
-    //   window.history.go(0);
-      
+      this.$store.commit({
+          type: 'deleteArticle',
+          article: this.articleWillDelete
+      })
+      // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
+      //   window.history.go(0);
     }
   }
 };

@@ -10,8 +10,8 @@
 </template>
 
 <script>
-import articleCatalog from '@/components/article/catalog';
-import appAsider from '@/components/app/asider';
+import articleCatalog from '@/components/article/catalog'
+import appAsider from '@/components/app/asider'
 
 export default {
   data() {
@@ -26,7 +26,7 @@ export default {
       this.articles = JSON.parse(response.data);
       this.$store.dispatch({
         type: "initArticlesAsync",
-        articles: response.data
+        articles: this.articles
       });
     });
   },

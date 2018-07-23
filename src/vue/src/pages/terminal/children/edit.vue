@@ -1,85 +1,74 @@
 <template>
-  <div id="terminal-edit">
-    <el-input placeholder="请输入标题" v-model="article.info.title" clearable></el-input>
+    <div id="terminal-edit">
+        <el-input placeholder="请输入标题" v-model="article.info.title" clearable></el-input>
 
-    <div id="editor">
-      <textarea v-model="article.info.content"></textarea>
-      <MarkdownDisplayer :width="{ width: '50%' }" v-bind:input="article.info.content" />
+        <div id="editor">
+            <textarea v-model="article.info.content"></textarea>
+            <markdown-displayer :width="{ width: '50%' }" v-bind:input="article.info.content" />
+        </div>
+
+        <el-input placeholder="请输入分类" v-model="article.info.classify" clearable></el-input>
+
+        <el-button v-if="this.$route.params.id" type="primary" @click="update">
+            <i class="el-icon-document" /> 更新
+        </el-button>
+        <el-button v-else type="primary" @click="add">
+            <i class="el-icon-document" /> 添加
+        </el-button>
     </div>
-    <el-input placeholder="请输入分类" v-model="article.info.classify" clearable></el-input>
-    <el-button type="primary" @click="save">
-      <i class="el-icon-document" />
-    </el-button>
-  </div>
 </template>
+
 <script>
-import MarkdownDisplayer from "@/components/common/MarkdownDisplayer";
-import MarkdownEditor from "@/components/common/MarkdownEditor";
+import markdownDisplayer from '@/components/common/MarkdownDisplayer'
+// import markdownEditor from '@/components/common/MarkdownEditor'
 
 export default {
-  name: "Edit",
   data() {
     return {
-      article: {
-        id: " ",
-        info: {
-          title: " ",
-          content: " ",
-          time: " ",
-          readcount: " ",
-          classify: " "
-        }
-      }, 
-
-      
-      // title: "",
-      // content: "",
-      // classify: ""
+      article: this.$route.params.id
+        ? this.$store.getters.oneArticle(this.$route.params.id)
+        : {
+            info: {
+              title: "",
+              content: "",
+              classify: ""
+            }
+          }
     };
   },
+
   components: {
-    MarkdownDisplayer
+    markdownDisplayer
   },
-  mounted() {
-    if (this.$route.params.id != null) {
-      console.log(this.$route.params.id);
-      this.article = this.$store.getters.oneArticle(this.$route.params.id);
-      // this.axios.get("/api/article/" + this.$route.params.id).then(response => {
-      //   this.article = JSON.parse(response.data);
-      //   // console.log(JSON.stringify(response.data))
-      //   // console.log(this.article.id)
-      // });
-    } else {
-      console.log("Let's add a new article");
-    }
-  },
+
   methods: {
-    save() {
-      // if (this.$route.params.id != null) {
-        this.axios
-        .post("/api/article/add", {
-          title: this.title,
-          content: this.content,
-          classify: this.classify
-        })
-        .then(response => {
-          console.log(response.data);
-        });
-      // } else {
-        // 在这里加一层校验，如果没有改变就不用和服务器通信了
-      //   this.axios
+    update() {
+      //   在这里加一层校验，如果没有改变就不用和服务器通信了
+      // this.axios
       //   .post("/api/article/update", {
-      //     title: this.title,
-      //     content: this.content,
-      //     classify: this.classify
+      //     title: this.article.info.title,
+      //     content: this.article.info.content,
+      //     classify: this.article.info.classify
       //   })
       //   .then(response => {
       //     console.log(response.data);
       //   });
-      // }
+      console.log("update");
+    },
+    add() {
+      // this.axios
+      //   .post("/api/article/add", {
+      //     title: this.article.info.title,
+      //     content: this.article.info.content,
+      //     classify: this.article.info.classify
+      //   })
+      //   .then(response => {
+      //     console.log(response.data);
+      //   });
+      console.log("add");
     }
   }
-};
+}
 </script>
 
 <style scoped>

@@ -14,8 +14,8 @@ export default new Vuex.Store({
     allArticles: state => {
       return state.articles;
     }, 
-    oneArticle: (state) => (id) => {
-      console.log("get one")
+    oneArticle: state => id => {
+      // console.log("get one")
       return state.articles.find(article => article.id === id);
       // return state.articles.length;
     }
@@ -23,12 +23,12 @@ export default new Vuex.Store({
   mutations: {
     initArticles(state, payload) {
       // state.articles.push(...payload.articles);
-        state.articles = state.articles.concat(payload.articles);
+        state.articles = payload.articles;
       // console.log(JSON.stringify(payload.articles));
-      console.log("1" + this.getters.allArticles);
-      console.log("2" + JSON.stringify(this.getters.allArticles));
+      // console.log("1" + this.getters.allArticles);
+      // console.log("2" + JSON.stringify(this.getters.allArticles));
 
-      console.log(JSON.stringify(this.getters.oneArticle("test3")));
+      // console.log(JSON.stringify(this.getters.oneArticle("test3")));
 
     },
     // 这个做成分页加载
@@ -40,6 +40,14 @@ export default new Vuex.Store({
     addArticle(state, payload) {
       state.articles.push(payload.article);
       console.log(JSON.stringify(this.getters.allArticles));
+    },
+
+    deleteArticle(state, payload) {
+      state.articles.splice(state.articles.indexOf(payload.article));
+      // console.log(this.getters.allArticles)
+      // for (var i = 0; i < state.articles.indexOf(payload.articleId))
+      // console.log(JSON.stringify(payload.article))
+        // console.log(state.articles.indexOf(payload.article))
     }
   },
   actions: {

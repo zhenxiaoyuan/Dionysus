@@ -1,42 +1,29 @@
 <template>
-    <div id="detail-page">
-        <el-row>
-            <el-col :span="18">
-                <ArticleDetail :id="id"></ArticleDetail>
-            </el-col>
-            <el-col :span="6">
-                <AppAside></AppAside>
-            </el-col>
-        </el-row>
-    </div>
+    <el-row>
+        <el-col :span="18">
+            <article-detail :article="article"></article-detail>
+        </el-col>
+        <el-col :span="6">
+            <app-aside></app-aside>
+        </el-col>
+    </el-row>
 </template>
 
 <script>
-import AppAside from "@/components/app/asider";
-import ArticleDetail from "@/components/article/ArticleDetail";
+import appAside from "@/components/app/asider";
+import articleDetail from "@/components/article/detail";
 
 export default {
   data() {
     return {
-      id: this.$route.params.id,
-        // article: {}
+      article: this.$store.getters.oneArticle(this.$route.params.id)
     }
   },
-  mounted() {
-    //   console.log("detail is mounted")
-    // this.axios.get("/api/article/" + this.$route.params.id).then(response => {
-    //   this.article = JSON.parse(response.data);
-    // // console.log(this.$route.params.id + JSON.stringify(response.data));
-    // console.log(this.article.id + " " + this.article.info.title)
 
-    // });
-    
-  },
-  
   components: {
-    AppAside,
-    ArticleDetail
-  },
-  
-};
+    appAside,
+    articleDetail
+  }
+
+}
 </script>

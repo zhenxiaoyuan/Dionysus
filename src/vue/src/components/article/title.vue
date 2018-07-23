@@ -11,14 +11,9 @@
 
 <script>
 export default {
-  name: "ArticleTitle",
-  props: ["title", "id"],
-  methods: {
-    say: function() {
-      alert(this.title);
-    }
-  }
-};
+  props: ['title', 'id']
+
+}
 </script>
 
 <style>
