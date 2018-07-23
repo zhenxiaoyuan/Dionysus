@@ -10,9 +10,10 @@
 </template>
 
 <script>
-import articleCatalog from '@/components/article/catalog'
-import appAsider from '@/components/app/asider'
-import { initArticles } from '@/service/getData'
+import articleCatalog from "@/components/article/catalog";
+import appAsider from "@/components/app/asider";
+import { initArticles } from "@/service/getData";
+import { mapMutations } from "vuex";
 
 export default {
   data() {
@@ -24,20 +25,20 @@ export default {
   mounted() {
     // 后期并入service
     initArticles().then(response => {
-      this.articles = JSON.parse(response.data)
-      this.$store.dispatch({
-        type: "initArticlesAsync",
-        articles: this.articles
-      });
-    })
+      this.articles = JSON.parse(response.data);
+      this.initArticles(this.articles);
+    });
+  },
+
+  methods: {
+    ...mapMutations(["initArticles"])
   },
 
   components: {
     articleCatalog,
     appAsider
   }
-}
-
+};
 </script>
 
 <style>
