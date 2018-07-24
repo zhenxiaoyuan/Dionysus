@@ -10,10 +10,10 @@
 </template>
 
 <script>
-import articleCatalog from "@/components/article/catalog";
-import appAsider from "@/components/app/asider";
-import { initArticles } from "@/service/getData";
-import { mapMutations } from "vuex";
+import articleCatalog from '@/components/article/catalog'
+import appAsider from '@/components/app/asider'
+import { initArticles } from '@/service/getData'
+import { mapMutations } from 'vuex'
 
 export default {
   data() {
@@ -26,12 +26,12 @@ export default {
     // 后期并入service
     initArticles().then(response => {
       this.articles = JSON.parse(response.data);
-      this.initArticles(this.articles);
+      this.INIT_ARTICLES(this.articles);
     });
   },
 
   methods: {
-    ...mapMutations(["initArticles"])
+    ...mapMutations(['INIT_ARTICLES'])
   },
 
   components: {

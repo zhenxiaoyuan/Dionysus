@@ -12,17 +12,34 @@
 <script>
 import appAside from "@/components/app/asider";
 import articleDetail from "@/components/article/detail";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      article: this.$store.getters.oneArticle(this.$route.params.id)
+      article: {
+          id: '',
+          info: {
+              title: '',
+              content: '',
+              readcount: 0,
+              classify: ''
+          }
+      }
     }
   },
 
   components: {
     appAside,
     articleDetail
+  },
+
+  mounted() {
+    this.article = this.getArticleById(this.$route.params.id);
+  },
+
+  computed: {
+    ...mapGetters(["getArticleById"])
   }
 
 }

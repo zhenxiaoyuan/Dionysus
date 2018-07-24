@@ -1,44 +1,50 @@
 <template>
-  <div id="terminal-edit">
-    <el-input placeholder="请输入标题" v-model="article.info.title" clearable></el-input>
+    <div id="terminal-edit">
+        <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
 
-    <div id="editor">
-      <textarea v-model="article.info.content"></textarea>
-      <markdown-displayer :width="{ width: '50%' }" v-bind:input="article.info.content" />
+        <div id="editor">
+            <textarea v-model="content"></textarea>
+            <markdown-displayer :width="{ width: '50%' }" v-bind:input="content" />
+        </div>
+
+        <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
+
+        <el-button v-if="this.$route.params.id" type="primary" @click="update">
+            <i class="el-icon-document" /> 更新
+        </el-button>
+        <el-button v-else type="primary" @click="add">
+            <i class="el-icon-document" /> 添加
+        </el-button>
     </div>
-
-    <el-input placeholder="请输入分类" v-model="article.info.classify" clearable></el-input>
-
-    <el-button v-if="this.$route.params.id" type="primary" @click="update">
-      <i class="el-icon-document" /> 更新
-    </el-button>
-    <el-button v-else type="primary" @click="add">
-      <i class="el-icon-document" /> 添加
-    </el-button>
-  </div>
 </template>
 
 <script>
-import markdownDisplayer from '@/components/common/MarkdownDisplayer'
-import { addArticle, updateArticle } from '@/service/getData'
+import markdownDisplayer from "@/components/common/MarkdownDisplayer";
+import { addArticle, updateArticle } from "@/service/getData";
+import { mapGetters } from "vuex";
 
 export default {
   data() {
     return {
-      article: this.$route.params.id
-        ? this.$store.getters.oneArticle(this.$route.params.id)
-        : {
-            info: {
-              title: "",
-              content: "",
-              classify: ""
-            }
-          }
+      article: {},
+      title: "", // 文章标题
+      content: "", // 文章正文
+      classify: "" // 文章分类
     };
   },
 
-  components: {
-    markdownDisplayer
+  mounted() {
+    if (this.$route.params.id) {
+      this.article = this.getArticleById(this.$route.params.id);
+      console.log(this.article);
+      this.title = this.article.info.title;
+      this.content = this.article.info.content;
+      this.classify = this.article.info.classify;
+    }
+  },
+
+  computed: {
+    ...mapGetters(["getArticleById"])
   },
 
   methods: {
@@ -46,7 +52,7 @@ export default {
       addArticle(this.article.info).then(response => {
         console.log(response.data);
         // store getter
-      })
+      });
     },
 
     update() {
@@ -54,11 +60,14 @@ export default {
       updateArticle(this.article.info).then(response => {
         console.log(response.data);
         // store getter
-      })
+      });
     }
-    
+  },
+
+  components: {
+    markdownDisplayer
   }
-}
+};
 </script>
 
 <style scoped>

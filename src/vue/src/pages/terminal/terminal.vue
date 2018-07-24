@@ -13,6 +13,7 @@
 <script>
 import articleTable from '@/components/terminal/articleTable'
 import { initArticles } from '@/service/getData'
+import { mapMutations } from 'vuex'
 
 export default {
   data() {
@@ -24,16 +25,17 @@ export default {
   mounted() {
     // 后期并入service
     initArticles().then(response => {
-      this.articles = JSON.parse(response.data)
-      this.$store.dispatch({
-        type: "initArticlesAsync",
-        articles: this.articles
-      });
+      this.articles = JSON.parse(response.data);
+      this.INIT_ARTICLES(this.articles);
     })
   },
 
   components: {
     articleTable
+  },
+
+  methods: {
+    ...mapMutations(['INIT_ARTICLES'])
   }
 }
 </script>

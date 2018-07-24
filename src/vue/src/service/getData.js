@@ -3,6 +3,9 @@ const axios = require('axios')
 // 初始化首页文章
 export const initArticles = () => axios.get("/api/article/all")
 
+// 初始化termminal页文章数据
+export const terminalArticles = () => axios.get("/api/article/all")
+
 // 增加文章
 export const addArticle = (articleInfo) => axios.post("/api/article/add", articleInfo)
 
