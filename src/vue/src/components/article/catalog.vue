@@ -1,9 +1,9 @@
 <template>
     <ul class="article-catalog-ul">
         <li v-for="article in articles" v-bind:key="article.id" style="list-style: none" class="article-catalog-li">
-            <article-title :id="article.id" :title="article.info.title"></article-title>
-            <markdown-displayer :width="{ width: '100%' }" :input="article.info.content"></markdown-displayer>
-            <article-footer :id="article.id" :time="article.info.time" :readcount="article.info.readcount" :classify="article.info.classify"></article-footer>
+            <article-title :id="article.id" :title="article.title"></article-title>
+            <markdown-displayer :width="{ width: '100%' }" :input="article.content"></markdown-displayer>
+            <article-footer :id="article.id" :time="article.time" :readcount="article.readcount" :classify="article.classify"></article-footer>
         </li>
     </ul>
 </template>

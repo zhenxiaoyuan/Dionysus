@@ -1,32 +1,34 @@
 <template>
-    <div id="terminal-edit">
-        <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
+  <div id="terminal-edit">
+    <el-input placeholder="请输入标题" v-model="title" clearable></el-input>
 
-        <div id="editor">
-            <textarea v-model="content"></textarea>
-            <markdown-displayer :width="{ width: '50%' }" v-bind:input="content" />
-        </div>
-
-        <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
-
-        <el-button v-if="this.$route.params.id" type="primary" @click="update">
-            <i class="el-icon-document" /> 更新
-        </el-button>
-        <el-button v-else type="primary" @click="add">
-            <i class="el-icon-document" /> 添加
-        </el-button>
+    <div id="editor">
+      <textarea v-model="content"></textarea>
+      <markdown-displayer :width="{ width: '50%' }" v-bind:input="content" />
     </div>
+
+    <el-input placeholder="请输入分类" v-model="classify" clearable></el-input>
+
+    <el-button v-if="this.$route.params.id" type="primary" @click="update">
+      <i class="el-icon-document" /> 更新
+    </el-button>
+    <el-button v-else type="primary" @click="add">
+      <i class="el-icon-document" /> 添加
+    </el-button>
+  </div>
 </template>
 
 <script>
 import markdownDisplayer from "@/components/common/MarkdownDisplayer";
 import { addArticle, updateArticle } from "@/service/getData";
-import { mapGetters } from "vuex";
+import { mapGetters, mapMutations } from "vuex";
 
 export default {
   data() {
     return {
       article: {},
+      newArticle: {},
+      // tmpArticle: {},
       title: "", // 文章标题
       content: "", // 文章正文
       classify: "" // 文章分类
@@ -36,10 +38,10 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       this.article = this.getArticleById(this.$route.params.id);
-      console.log(this.article);
-      this.title = this.article.info.title;
-      this.content = this.article.info.content;
-      this.classify = this.article.info.classify;
+      this.newArticle = this.article
+      this.title = this.article.title;
+      this.content = this.article.content;
+      this.classify = this.article.classify;
     }
   },
 
@@ -49,19 +51,56 @@ export default {
 
   methods: {
     add() {
-      addArticle(this.article.info).then(response => {
+      addArticle({
+        title: this.title,
+        content: this.content,
+        classify: this.classify
+      }).then(response => {
         console.log(response.data);
+        console.log(JSON.parse(response.data))
+        // this.id = JSON.parse(response.data).id
+        // console.log(result)
+        // console.log(JSON.stringify(response.data));
+        // 返回id, readcount, time后在同步store
+        this.ADD_ARTICLE({
+          id: JSON.parse(response.data).id,
+          title: this.title,
+          content: this.content,
+          time: JSON.parse(response.data).time,
+          readcount: JSON.parse(response.data).readcount,
+          classify: this.classify
+        });
+        this.$router.go(-1)
+        // 跳出并刷新
         // store getter
       });
     },
 
     update() {
       // 在这里加一层校验，如果没有改变就不用和服务器通信了
-      updateArticle(this.article.info).then(response => {
+      updateArticle({
+        title: this.title,
+        content: this.content,
+        classify: this.classify
+      }).then(response => {
         console.log(response.data);
+        // 返回id后再同步
+        // this.newArticle = this.article
+        this.newArticle.title = this.title
+        this.newArticle.content = this.content
+        this.newArticle.classify = this.classify
+        this.UPDATE_ARTICLE({
+          oldArticle: this.article,
+          newArticle: this.newArticle
+        } );
+        this.$router.go(-1)
+
+        // 跳出并刷新
         // store getter
       });
-    }
+    },
+
+    ...mapMutations(["ADD_ARTICLE", "UPDATE_ARTICLE"])
   },
 
   components: {

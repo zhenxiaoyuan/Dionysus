@@ -1,19 +1,19 @@
 <template>
-    <el-row>
-        <el-col :span="18">
-            <article-catalog :articles="articles"></article-catalog>
-        </el-col>
-        <el-col :span="6">
-            <app-asider></app-asider>
-        </el-col>
-    </el-row>
+  <el-row>
+    <el-col :span="18">
+      <article-catalog :articles="articles"></article-catalog>
+    </el-col>
+    <el-col :span="6">
+      <app-asider></app-asider>
+    </el-col>
+  </el-row>
 </template>
 
 <script>
-import articleCatalog from '@/components/article/catalog'
-import appAsider from '@/components/app/asider'
-import { initArticles } from '@/service/getData'
-import { mapMutations } from 'vuex'
+import articleCatalog from "@/components/article/catalog";
+import appAsider from "@/components/app/asider";
+import { initArticles } from "@/service/getData";
+import { mapMutations } from "vuex";
 
 export default {
   data() {
@@ -31,7 +31,7 @@ export default {
   },
 
   methods: {
-    ...mapMutations(['INIT_ARTICLES'])
+    ...mapMutations(["INIT_ARTICLES"])
   },
 
   components: {

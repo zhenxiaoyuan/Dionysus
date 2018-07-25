@@ -1,12 +1,12 @@
 <template>
     <div id="article-detail">
-        <article-title :id="article.id" :title="article.info.title"></article-title>
-        <markdown-displayer :width="{ width: '100%' }" :input="article.info.content"></markdown-displayer>
+        <article-title :id="article.id" :title="article.title"></article-title>
+        <markdown-displayer :width="{ width: '100%' }" :input="article.content"></markdown-displayer>
         <article-footer 
             :id="article.id" 
-            :time="article.info.time" 
-            :readcount="article.info.readcount" 
-            :classify="article.info.classify">
+            :time="article.time" 
+            :readcount="article.readcount" 
+            :classify="article.classify">
         </article-footer>
     </div>
 </template>

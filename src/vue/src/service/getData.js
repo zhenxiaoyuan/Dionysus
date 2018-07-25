@@ -7,7 +7,7 @@ export const initArticles = () => axios.get("/api/article/all")
 export const terminalArticles = () => axios.get("/api/article/all")
 
 // 增加文章
-export const addArticle = (articleInfo) => axios.post("/api/article/add", articleInfo)
+export const addArticle = (article) => axios.post("/api/article/add", article)
 
 // 删除文章
 export const deleteArticle = (articleId) => axios.post("/api/article/delete", articleId)

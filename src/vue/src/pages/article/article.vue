@@ -18,15 +18,13 @@ export default {
   data() {
     return {
       article: {
-          id: '',
-          info: {
-              title: '',
-              content: '',
-              readcount: 0,
-              classify: ''
-          }
+        id: "",
+        title: "",
+        content: "",
+        readcount: 0,
+        classify: ""
       }
-    }
+    };
   },
 
   components: {
@@ -41,6 +39,5 @@ export default {
   computed: {
     ...mapGetters(["getArticleById"])
   }
-
-}
+};
 </script>

@@ -5,12 +5,12 @@
                 <template slot-scope="scope">
                     <router-link :to="'/detail/' + scope.row.id">
                         <el-button type="text">
-                            {{ scope.row.info.title }}
+                            {{ scope.row.title }}
                         </el-button>
                     </router-link>
                 </template>
             </el-table-column>
-            <el-table-column prop="info.readcount" label="阅读量" width="120">
+            <el-table-column prop="readcount" label="阅读量" width="120">
             </el-table-column>
             <el-table-column fixed="right" label="操作" width="200">
                 <template slot-scope="scope">
@@ -56,9 +56,12 @@ export default {
     },
 
     confirmDelete() {
-      deleteArticle(this.articleWillDelete).then(response => {
-        // console.log(response.data);
+      deleteArticle({
+          id: this.articleWillDelete.id
+      }).then(response => {
+        console.log(response.data);
         this.deleteSuccess();
+        // 或失败
       });
     },
 
@@ -70,12 +73,12 @@ export default {
         center: true
       });
       this.dialogDeleteVisible = false;
-      this.deleteArticle(this.articleWillDelete);
+      this.DELETE_ARTICLE(this.articleWillDelete);
       // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
       //   window.history.go(0);
     },
 
-    ...mapMutations(['deleteArticle'])
+    ...mapMutations(['DELETE_ARTICLE'])
   }
 };
 </script>
