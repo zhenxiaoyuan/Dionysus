@@ -36,16 +36,17 @@
 </template>
 
 <script>
-import { deleteArticle } from '@/service/getData'
-import { mapMutations } from 'vuex'
+import { deleteArticle } from "@/service/getData";
+import { mapMutations } from "vuex";
 
 export default {
-  props: ['articles'],
+  props: ["articles"],
 
   data() {
     return {
       dialogDeleteVisible: false,
-      articleWillDelete: {}
+      articleWillDelete: {},
+      deleteResult: {}
     };
   },
 
@@ -57,11 +58,15 @@ export default {
 
     confirmDelete() {
       deleteArticle({
-          id: this.articleWillDelete.id
+        id: this.articleWillDelete.id
       }).then(response => {
-        console.log(response.data);
-        this.deleteSuccess();
-        // 或失败
+        this.deleteResult = JSON.parse(response.data);
+        if (!this.deleteResult.error) {
+          this.deleteSuccess();
+        } else {
+          this.deleteFail();
+          console.log(this.deleteResult.info);
+        }
       });
     },
 
@@ -74,11 +79,14 @@ export default {
       });
       this.dialogDeleteVisible = false;
       this.DELETE_ARTICLE(this.articleWillDelete);
-      // 此处肯定可以重新获取数据并刷新Table组件，现在还不会，以后优化。
-      //   window.history.go(0);
     },
 
-    ...mapMutations(['DELETE_ARTICLE'])
+    deleteFail() {
+      this.$message.error("删除失败，消息被一股来自东方的神秘力量拦住了…");
+      this.dialogDeleteVisible = false;
+    },
+
+    ...mapMutations(["DELETE_ARTICLE"])
   }
 };
 </script>
