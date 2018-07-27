@@ -28,6 +28,9 @@ export default {
     return {
       article: {},
       newArticle: {},
+      resultType: "",
+      addResult: {},
+      resultInfo: {},
       // tmpArticle: {},
       title: "", // 文章标题
       content: "", // 文章正文
@@ -38,7 +41,7 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       this.article = this.getArticleById(this.$route.params.id);
-      this.newArticle = this.article
+      this.newArticle = this.article;
       this.title = this.article.title;
       this.content = this.article.content;
       this.classify = this.article.classify;
@@ -57,22 +60,27 @@ export default {
         classify: this.classify
       }).then(response => {
         console.log(response.data);
-        console.log(JSON.parse(response.data))
-        // this.id = JSON.parse(response.data).id
-        // console.log(result)
-        // console.log(JSON.stringify(response.data));
-        // 返回id, readcount, time后在同步store
-        this.ADD_ARTICLE({
-          id: JSON.parse(response.data).id,
-          title: this.title,
-          content: this.content,
-          time: JSON.parse(response.data).time,
-          readcount: JSON.parse(response.data).readcount,
-          classify: this.classify
-        });
-        this.$router.go(-1)
-        // 跳出并刷新
-        // store getter
+        console.log(JSON.parse(response.data));
+        this.addResult = JSON.parse(response.data);
+        if (this.addResult.type !== "error") {
+          // 返回没报错
+          this.resultInfo = JSON.parse(this.addResult.info);
+          this.ADD_ARTICLE({
+            id: this.resultInfo.id,
+            title: this.title,
+            content: this.content,
+            time: this.resultInfo.time,
+            readcount: this.resultInfo.readcount,
+            classify: this.classify
+          });
+
+          this.$router.go(-1);
+        }
+        else {
+          // 添加过程中出现问题
+          // messagebox 提示出现问题
+          // 不应该返回页面
+        }
       });
     },
 
@@ -86,14 +94,14 @@ export default {
         console.log(response.data);
         // 返回id后再同步
         // this.newArticle = this.article
-        this.newArticle.title = this.title
-        this.newArticle.content = this.content
-        this.newArticle.classify = this.classify
+        this.newArticle.title = this.title;
+        this.newArticle.content = this.content;
+        this.newArticle.classify = this.classify;
         this.UPDATE_ARTICLE({
           oldArticle: this.article,
           newArticle: this.newArticle
-        } );
-        this.$router.go(-1)
+        });
+        this.$router.go(-1);
 
         // 跳出并刷新
         // store getter

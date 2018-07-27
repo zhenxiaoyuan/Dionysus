@@ -23,9 +23,10 @@ export default {
   },
 
   mounted() {
-    // 后期并入service
+    // 后退到此页需要刷新页面
     initArticles().then(response => {
       this.articles = JSON.parse(response.data);
+      // 增加错误判断
       this.INIT_ARTICLES(this.articles);
     });
   },

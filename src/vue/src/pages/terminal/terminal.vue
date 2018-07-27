@@ -23,9 +23,9 @@ export default {
   },
 
   mounted() {
-    // 后期并入service
     initArticles().then(response => {
       this.articles = JSON.parse(response.data);
+      // 增加错误判断s
       this.INIT_ARTICLES(this.articles);
     })
   },

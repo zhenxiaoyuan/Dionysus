@@ -61,7 +61,8 @@ export default {
         id: this.articleWillDelete.id
       }).then(response => {
         this.deleteResult = JSON.parse(response.data);
-        if (!this.deleteResult.error) {
+        if (this.deleteResult.type !== "error") {
+            console.log(JSON.stringify(this.deleteResult))
           this.deleteSuccess();
         } else {
           this.deleteFail();
