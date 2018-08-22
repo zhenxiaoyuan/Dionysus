@@ -27,11 +27,9 @@ export default {
   data() {
     return {
       article: {},
-      newArticle: {},
-      resultType: "",
-      addResult: {},
-      resultInfo: {},
-      // tmpArticle: {},
+      addResult: {}, // 返回结果
+      resultInfo: {}, // 结果信息
+      id: "",     // 文章编号
       title: "", // 文章标题
       content: "", // 文章正文
       classify: "" // 文章分类
@@ -41,7 +39,7 @@ export default {
   mounted() {
     if (this.$route.params.id) {
       this.article = this.getArticleById(this.$route.params.id);
-      this.newArticle = this.article;
+      this.id = this.article.id;
       this.title = this.article.title;
       this.content = this.article.content;
       this.classify = this.article.classify;
@@ -59,8 +57,6 @@ export default {
         content: this.content,
         classify: this.classify
       }).then(response => {
-        console.log(response.data);
-        console.log(JSON.parse(response.data));
         this.addResult = JSON.parse(response.data);
         if (this.addResult.type !== "error") {
           // 返回没报错
@@ -75,10 +71,12 @@ export default {
           });
 
           this.$router.go(-1);
-        }
-        else {
+        } else {
           // 添加过程中出现问题
+          // 后期添加对不同报错的区别处理，比如文章重名等
           // messagebox 提示出现问题
+          this.$message.error("新建失败，消息被一股来自东方的神秘力量拦住了…");
+          console.log(this.addResult.info)
           // 不应该返回页面
         }
       });
@@ -87,6 +85,7 @@ export default {
     update() {
       // 在这里加一层校验，如果没有改变就不用和服务器通信了
       updateArticle({
+        id: this.id,
         title: this.title,
         content: this.content,
         classify: this.classify
